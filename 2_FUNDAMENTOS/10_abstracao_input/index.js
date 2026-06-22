@@ -1,3 +1,5 @@
+//O módulo inquirer é uma biblioteca que permite criar interfaces de linha de comando interativas, facilitando a coleta de informações do usuário. Ele é amplamente utilizado em aplicativos Node.js para criar prompts de entrada, menus e questionários.
+
 const inquirer = require('inquirer')
 
 inquirer

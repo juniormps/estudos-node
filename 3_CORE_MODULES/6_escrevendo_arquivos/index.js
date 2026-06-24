@@ -1,3 +1,5 @@
+//Utilizando o módulo http, fs e url para criar um servidor que lê um arquivo HTML e o envia como resposta, além de escrever dados em um arquivo. O servidor escuta na porta 3000 e redireciona o usuário de volta para a página inicial após escrever os dados no arquivo.
+
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
@@ -5,28 +7,28 @@ const url = require("url");
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  var urlInfo = require("url").parse(req.url, true);
-  const name = urlInfo.query.name;
+    var urlInfo = url.parse(req.url, true);
+    const name = urlInfo.query.name;
 
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/html");
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/html");
 
-  if (!name) {
-    fs.readFile("index.html", function (err, data) {
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(data);
-      return res.end();
-    });
-  } else {
-    fs.writeFile("arquivo.txt", name, function (err, data) {
-      res.writeHead(302, {
-        Location: "/",
-      });
-      return res.end();
-    });
-  }
+    if (!name) {
+        fs.readFile("index.html", function (err, data) {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.write(data);
+            return res.end();
+        });
+    } else {
+        fs.writeFile("arquivo.txt", name, function (err, data) {
+            res.writeHead(302, {
+                Location: "/",
+            });
+            return res.end();
+        });
+    }
 });
 
 server.listen(port, () => {
-  console.log(`Servidor rodando na porta: ${port}`);
+    console.log(`Servidor rodando na porta: ${port}`);
 });

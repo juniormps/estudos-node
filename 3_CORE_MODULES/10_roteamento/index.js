@@ -1,3 +1,6 @@
+// Criando roteamento de páginas HTML com Node.js. O código abaixo cria um servidor HTTP que responde a solicitações de páginas HTML. Ele verifica se o arquivo solicitado existe e, se existir, retorna o conteúdo do arquivo. Caso contrário, retorna uma página de erro 404.
+
+
 const http = require('http')
 const fs = require('fs')
 const url = require('url')

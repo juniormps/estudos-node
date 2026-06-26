@@ -1,3 +1,5 @@
+// Atualizando arquivos com Node.js. O método appendFile() é utilizado para adicionar conteúdo a um arquivo existente. Se o arquivo não existir, ele será criado. No exemplo abaixo, estamos criando um servidor HTTP que recebe um nome através de uma query string e adiciona esse nome a um arquivo chamado "arquivo.txt". Se o nome não for fornecido, o servidor retorna um formulário HTML para o usuário preencher.
+
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
@@ -5,7 +7,7 @@ const url = require("url");
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  var urlInfo = require("url").parse(req.url, true);
+  var urlInfo = url.parse(req.url, true);
   const name = urlInfo.query.name;
 
   res.statusCode = 200;
@@ -18,7 +20,7 @@ const server = http.createServer((req, res) => {
       return res.end();
     });
   } else {
-    const nameNewLine = name + "\r\n";
+    const nameNewLine = name + ",\r\n";
 
     fs.appendFile("arquivo.txt", nameNewLine, function (err, data) {
       res.writeHead(302, {

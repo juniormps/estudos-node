@@ -1,1 +1,3 @@
+// O npx é um executor de pacotes do NPM.
+
 npx cowsay -d "Mensagem"

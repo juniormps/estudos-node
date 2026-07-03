@@ -8,7 +8,7 @@
 
 // Para uma atualização global de todos os pacotes, você pode utilizar o comando "npm update -g". Isso irá atualizar todos os pacotes instalados globalmente para suas versões mais recentes. Ou, pode utilizar também o comando npx npm-check-updates -u, que irá atualizar todas as dependências do projeto para suas versões mais recentes, respeitando as restrições de versão definidas no arquivo package.json. Após executar esse comando, você deve rodar o comando "npm install" para instalar as novas versões dos pacotes.
 
-//---------------------------------------------------------------------------//
+//------------------------------------------//
 
 const _ = require("lodash");
 const chalk = require("chalk");

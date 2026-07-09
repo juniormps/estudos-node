@@ -1,28 +1,29 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require("express");
+const app = express();
+const port = 3000;
 
-const path = require('path')
+const path = require("path");
 
-const basePath = path.join(__dirname, 'templates')
+const basePath = path.join(__dirname, "templates");
 
 var checkAuth = function (req, res, next) {
-  req.authStatus = true
+    req.authStatus = true;
 
-  if (req.authStatus) {
-    console.log('Está logado, pode continuar')
-    next()
-  } else {
-    console.log('Não está logado, faça o login para continuar!')
-  }
-}
+    if (req.authStatus) {
+        console.log("Está logado, pode continuar");
+        next();
+    } else {
+        console.log("Não está logado, faça o login para continuar!");
+        next();
+    }
+};
 
-app.use(checkAuth)
+app.use(checkAuth);
 
-app.get('/', (req, res) => {
-  res.sendFile(`${basePath}/index.html`)
-})
+app.get("/", (req, res) => {
+    res.sendFile(`${basePath}/index.html`);
+});
 
 app.listen(port, () => {
-  console.log(`App rodando na porta:${port}`)
-})
+    console.log(`App rodando na porta:${port}`);
+});

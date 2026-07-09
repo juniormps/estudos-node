@@ -1,57 +1,48 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require("express");
+const app = express();
+const port = 3000;
 
-const path = require('path')
+const path = require("path");
 
-const basePath = path.join(__dirname, 'templates')
+const basePath = path.join(__dirname, "templates");
 
-// ler o body
+// Transforma o body da requisição em um objeto
 app.use(
-  express.urlencoded({
-    extended: true,
-  }),
-)
+    express.urlencoded({
+        extended: true,
+    }),
+);
 
-app.use(express.json())
+app.use(express.json());
 
-var checkAuth = function (req, res, next) {
-  req.authStatus = true
+// Entrega o formulário
+app.get("/users/add", (req, res) => {
+    res.sendFile(`${basePath}/userform.html`);
+});
 
-  if (req.authStatus) {
-    console.log('Está logado, pode continuar')
-    next()
-  } else {
-    console.log('Não está logado, faça o login para continuar!')
-  }
-}
+// Recebe os dados do formulário e trata eles
+app.post("/users/save", (req, res) => {
+    console.log(req.body);
 
-app.use(checkAuth)
+    const name = req.body.name;
+    const age = req.body.age;
 
-app.get('/users/add', (req, res) => {
-  res.sendFile(`${basePath}/userform.html`)
-})
+    console.log(`O nome do usuário é ${name} e ele tem ${age} anos.`);
 
-app.post('/users/save', (req, res) => {
-  console.log(req.body)
-  const name = req.body.name
-  const age = req.body.age
+    res.sendFile(`${basePath}/userform.html`);
+});
 
-  console.log(name)
-  console.log(age)
-})
+// antes do "/"
+app.get("/users/:id", (req, res) => {
+    console.log(`Carregando usuário: ${req.params.id}`);
 
-// antes do /
-app.get('/users/:id', (req, res) => {
-  console.log(`Carregando usuário: ${req.params.id}`)
+    res.sendFile(`${basePath}/users.html`);
+});
 
-  res.sendFile(`${basePath}/users.html`)
-})
-
-app.get('/', (req, res) => {
-  res.sendFile(`${basePath}/index.html`)
-})
+app.get("/", (req, res) => {
+    res.sendFile(`${basePath}/index.html`);
+});
 
 app.listen(port, () => {
-  console.log(`App rodando na porta:${port}`)
-})
+    console.log(`App rodando na porta:${port}`);
+});

@@ -1,5 +1,5 @@
-const express = require('express')
-const app = express()
+const express = require('express')  // Importando o express
+const app = express()  // Criando uma instância do express (executando o express)
 const port = 3000
 
 app.get('/', (req, res) => {

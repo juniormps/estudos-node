@@ -1,28 +1,33 @@
-var express = require('express')
-var router = express.Router()
+const express = require("express");
+const router = express.Router();
+const path = require("path");
 
-const path = require('path')
+const port = 3000;
 
-const basePath = path.join(__dirname, '../templates')
+const basePath = path.join(__dirname, "../templates");
 
-router.get('/add', (req, res) => {
-  res.sendFile(`${basePath}/userform.html`)
-})
+// Entrega o formulário
+router.get("/add", (req, res) => {
+    res.sendFile(`${basePath}/userform.html`);
+});
 
-router.post('/save', (req, res) => {
-  console.log(req.body)
-  const name = req.body.name
-  const age = req.body.age
+// Recebe os dados do formulário e trata eles
+router.post("/save", (req, res) => {
+    console.log(req.body);
 
-  console.log(name)
-  console.log(age)
-})
+    const name = req.body.name;
+    const age = req.body.age;
 
-// antes do /
-router.get('/:id', (req, res) => {
-  console.log(`Carregando usuário: ${req.params.id}`)
+    console.log(`O nome do usuário é ${name} e ele tem ${age} anos.`);
 
-  res.sendFile(`${basePath}/users.html`)
-})
+    res.sendFile(`${basePath}/userform.html`);
+});
 
-module.exports = router
+// antes do "/"
+router.get("/:id", (req, res) => {
+    console.log(`Carregando usuário: ${req.params.id}`);
+
+    res.sendFile(`${basePath}/users.html`);
+});
+
+module.exports = router;

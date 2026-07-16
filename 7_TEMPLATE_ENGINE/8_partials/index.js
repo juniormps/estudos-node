@@ -12,8 +12,9 @@ app.set("view engine", "handlebars");
 
 app.get("/", function (req, res) {
   const user = {
-    name: "Matheus",
-    surname: "Battisti",
+    name: "Marcio",
+    surname: "Junior",
+    approved: true
   };
 
   res.render("home", { user: user, auth: true });
